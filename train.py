@@ -180,14 +180,14 @@ schedulerE = torch.optim.lr_scheduler.ExponentialLR(optim_encoder, gamma=0.99)
 train_loss = []
 val_loss = []
 for epoch in range(args.epochs):
-    l1,l2,l3 = train_validate(encoder, decoder, Disc, train_loader, optim_encoder, optim_decoder, optim_D, True)
-    print('\n epoch:{} ---- training loss:{}'.format(epoch, l1 + l2 + l3))
-    train_loss.append(l1 + l2 + l3)
+    l1,l2 ,l3 = train_validate(encoder, decoder, Disc, train_loader, optim_encoder, optim_decoder, optim_D, True)
+    print('\n epoch:{} ---- training loss:{}'.format(epoch, l1))
+    train_loss.append(l1)
 
     if epoch % 5 == 0:
         l1, l2, l3 = train_validate(encoder, decoder, Disc, val_loader, optim_encoder, optim_decoder, optim_D, False)
-        print('\n epoch:{} ---- validation loss loss:{}'.format(epoch, l1 + l2 + l3))
-        val_loss.append(l1 + l2 + l3)
+        print('\n epoch:{} ---- validation loss loss:{}'.format(epoch, l1))
+        val_loss.append(l1 )
 
 sns.set()
 plt.rcParams['figure.figsize'] = 5, 5
@@ -195,7 +195,7 @@ plt.plot(np.arange(len(train_loss)), train_loss, label='train')
 plt.plot(np.arange(0, len(val_loss) * 5, 5), val_loss, label='val')
 plt.title('Training')
 plt.xlabel('Step')
-plt.ylabel('total loss')
+plt.ylabel('Reconstruction loss')
 plt.legend()
 plt.grid(True)
 plt.savefig(Fig_dir + 'training_' + str(args.epochs) + 'epochs.png')
