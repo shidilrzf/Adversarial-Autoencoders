@@ -200,8 +200,8 @@ plt.legend()
 plt.grid(True)
 plt.savefig(Fig_dir + 'training_' + str(args.epochs) + 'epochs.png')
 #save the Encoder
-torch.save(encoder.state_dict(),Model_dir + 'encoder_weights.pt')
-torch.save(decoder.state_dict(),Model_dir +'decoder_weights.pt')
-torch.save(Disc.state_dict(),Model_dir +'disc_weights.pt')
+torch.save(encoder.state_dict(),Model_dir + 'encoder_z'+ str(args.dim_z)+'_epch'+str(args.epochs)+'.pt')
+torch.save(decoder.state_dict(),Model_dir +'decoder_z'+ str(args.dim_z)+'_epch'+str(args.epochs)+'.pt')
+torch.save(Disc.state_dict(),Model_dir +'disc_z'+ str(args.dim_z)+'_epch'+str(args.epochs)+'.pt')
 
 
